@@ -57,10 +57,10 @@ npm run dev
 
 ### stripe payment in local dev environment
 
-To test and manage your Stripe integration from command line, install the Stripe CLI: 'https://stripe.com/docs/stripe-cli'
+To test and manage your Stripe integration from command line, install the Stripe CLI: 'https://stripe.com/docs/stripe-cli' and create an account
 
 Than login and authenticate your Stripe user Account
-
+- first you need to cd into the folder where you have stored stripe.exe
 - `stripe login` to connect with stripe in cmd
 
 And test your webhook endpoint function
