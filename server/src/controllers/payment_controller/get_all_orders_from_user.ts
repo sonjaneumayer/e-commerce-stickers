@@ -3,6 +3,7 @@ import { Order } from '../../models/model'
 
 export const getAllOrdersFromUser = async (req: Request, res: Response) => {
   const userId = req.params.userId
+  console.log("userId: ", userId)
   try {
     const allOrders = await Order.find({ userId: userId })
     if (!allOrders) {

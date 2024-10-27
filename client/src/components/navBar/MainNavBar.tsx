@@ -12,15 +12,14 @@ export function MainNavBar() {
   const { classes } = navBarStyles()
   // const [userAuth] = useUserDetails()
   const [userAuth] = useUser()
-  //console.log("User auth token",userAuth?.token)
+  console.log("User auth token",userAuth?.token)
   const UserButtons = () => {
     // gets set to false whenever page is refreshed
     // need persisted state for isAutheneticated
     if (userAuth?.token === null || userAuth.token === undefined) {
-      //console.log("YAY")
       return <NavBarLoggedOut />
     } else {
-      return <NavBarLoggedIn />
+       return <NavBarLoggedIn />
     }
   }
 

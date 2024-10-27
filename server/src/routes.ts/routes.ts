@@ -63,9 +63,11 @@ router.post('/item/verify-checkout', verifyCheckout)
 //// PAYMENT ENDPOINTS AND ORDERS
 //stripe for credit card payment
 router.post('/payment/create-checkout-session', createCheckoutSession)
-//router.post('/stripe/webhook', express.raw({type: 'application/json'}))
-router.post('/payment/stripe/webhook', async (req: Request, res: Response) => {
+router.post('/payment/stripe/webhook',
+  async (req: Request, res: Response) => {
+    console.log(req, res)
   try {
+    console.log("trigger")
     await triggerStripeWebhook(req, res)
   } catch (err) {
     console.error('Error in handling Stripe webhook:', err.message)
@@ -91,5 +93,7 @@ router.post(
   upload.single('profileImage'),
   uploadProfileImage
 )
+
+
 
 export default router

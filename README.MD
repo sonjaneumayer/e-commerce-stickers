@@ -66,5 +66,5 @@ Than login and authenticate your Stripe user Account
 And test your webhook endpoint function
 To forward events to your local endpoint, run the following command with the the CLI to set up a local listener
 
-- `stripe listen --forward-to localhost:3000/stripe/webhook` to call the local test endpoint
+- `stripe listen --forward-to localhost:3000/payment/stripe/webhook` to call the local test endpoint 
 - `4242 4242 4242 4242` dummy credit card number

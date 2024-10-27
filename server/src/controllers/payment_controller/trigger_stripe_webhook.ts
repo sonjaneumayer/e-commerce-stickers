@@ -15,7 +15,7 @@ let endpointSecret = process.env.STRIPE_CLI_WEBHOOK_SECRET as string
 export const triggerStripeWebhook = async (req: Request, res: Response) => {
     // checking if the event that causes this webhook comes from stripe
     // const sig = req.headers['stripe-signature']
-
+console.log("1")
     const payload = req.body;
     const payloadString = JSON.stringify(payload, null, 2);
     const header = stripeKey.webhooks.generateTestHeaderString({
@@ -44,8 +44,8 @@ export const triggerStripeWebhook = async (req: Request, res: Response) => {
         stripeKey.customers
             .retrieve(data.customer)
             .then((customer) => {
-                console.log("customer", customer)
-                console.log("data", data)
+                // console.log("customer", customer)
+                // console.log("data", data)
                 createOrder(customer, data)
             }).catch(err => console.log("ERROR", err.message))
     }
@@ -66,7 +66,7 @@ const createOrder = async (customer, data) => {
         shipping: data.customer_details,
         paymentStatus: data.payment_status
     })
-
+    console.log("newOrder: ",newOrder)
     try {
         const savedOrder = await Order.create(newOrder)
         //console.log("Processed order", savedOrder)

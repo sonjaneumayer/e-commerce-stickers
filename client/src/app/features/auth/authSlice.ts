@@ -20,10 +20,11 @@ export const authSlice = createSlice({
   reducers: {
     setCredentials: (state, action) => {
       const {data} = action.payload
-      //console.log("Data from setCredentials authSlice", action.payload)
+      console.log("Data from setCredentials authSlice - action.payload:", action.payload)
+      console.log("Data from setCredentials authSlice - data:", data)
       state.user = data?.user
-      state.token = data?.accessToken
-      //console.log('USER AUTH SET!!', state.token)
+      state.token = action.payload.accessToken
+      console.log('USER AUTH SET!! - state.token: ', state.token)
     },
     logOut: (state) => {
       state.user = null

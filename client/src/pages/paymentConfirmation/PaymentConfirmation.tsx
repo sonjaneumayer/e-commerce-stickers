@@ -4,17 +4,30 @@ import { usePaymentConfirmationStyles } from './payment_confirmation_styles'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { clearCart } from '../../app/features/cart/cartSlice'
-
+import { useEffect } from 'react'
+import { useUser } from '../../hooks/hooks'
+import { useRefreshMutation } from '../../app/features/auth/authApiSlice'
 
 export function PaymentConfirmation() {
     const { classes } = usePaymentConfirmationStyles()
     const navigate = useNavigate()
     const dispatch = useDispatch()
     dispatch(clearCart())
+    const [userAuth] = useUser()
+    const accessToken = userAuth.token
+    const [refresh, { isLoading }] =useRefreshMutation()
 
     const navigateToProducts = () => {
         navigate('/products')
     }
+
+    useEffect(() => {
+        if (!accessToken) {
+          refresh().then(() => !isLoading);
+        } else {
+            !isLoading;
+        }
+      }, [accessToken]);
 
     return (
         <>

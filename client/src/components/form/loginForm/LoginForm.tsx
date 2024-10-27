@@ -38,7 +38,7 @@ const formSchema = z.object({
 export type FormSchemaType = z.infer<typeof formSchema>
 
 export function LoginForm() {
-  const [persist, setPersist] = usePersistentState()
+  //const [persist, setPersist] = usePersistentState()
   const { classes } = useStyles()
   const {
     control,
@@ -48,7 +48,7 @@ export function LoginForm() {
     defaultValues: {
       email: '',
       password: '',
-      persist: persist,
+      //persist: persist,
     },
     resolver: zodResolver(formSchema),
   })
@@ -67,15 +67,17 @@ export function LoginForm() {
   }
 
   const onSubmit: SubmitHandler<FormSchemaType> = async (loginData) => {
+    console.log("loginData",loginData)
     const userData = await login(loginData).unwrap()
+    console.log("userdata", userData)
     dispatch(setCredentials({ ...userData }))
     dispatch(setUser({ ...userData }))
     navigate('/dashboard')
   }
 
-  const handleToggle = () => {
-    setPersist((prev: boolean) => !prev)
-  }
+  // const handleToggle = () => {
+  //   setPersist((prev: boolean) => !prev)
+  // }
 
   return (
     <>
@@ -146,14 +148,14 @@ export function LoginForm() {
                 </Button>
               </Group>
 
-              <Checkbox
+              {/* <Checkbox
                 control={control}
                 name="persist"
                 id="persist"
                 label="Trust this device"
                 value="false"
                 onChange={handleToggle}
-              />
+              /> */}
             </form>
           </Paper>
         </Grid.Col>
