@@ -3,6 +3,7 @@ import { FormSchemaType } from '../../../components/form/loginForm/LoginForm'
 import { logOut, setCredentials } from './authSlice'
 import { apiSlice } from '../../api/apiSlice'
 import { unsetUser } from '../users/userSlice'
+import Cookies from 'js-cookie'
 
 export const authApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
@@ -25,6 +26,8 @@ export const authApiSlice = apiSlice.injectEndpoints({
           //console.log("logout data: ", data)
           //sets token to null in local state
           dispatch(logOut())
+          Cookies.remove('accessToken'); // Clear token from cookies
+          //navigate('/login');
           setTimeout(() => {
             dispatch(apiSlice.util.resetApiState())
           }, 1000)
@@ -42,6 +45,11 @@ export const authApiSlice = apiSlice.injectEndpoints({
         try {
           const { data } = await queryFulfilled
           const { accessToken, user } = data  ?? { accessToken: '', user: null };
+          Cookies.set('accessToken', accessToken, { 
+            expires: 1, // 1 day
+            secure: true,
+            sameSite: 'Lax'
+          });
           //console.log("accessToken from refresh endpoint ", data)
           dispatch(setCredentials({ accessToken, user }))
         } catch (err) {

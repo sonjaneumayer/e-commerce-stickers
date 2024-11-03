@@ -22,19 +22,6 @@ import { Products } from '../../pages/products/Products'
 import { Item } from '../../pages/item/Item'
 import { Cart } from '../../pages/cart/Cart'
 import { Footer } from '../../components/footer/Footer'
-import {
-  ClerkProvider,
-  SignedIn,
-  SignedOut,
-  UserButton,
-  useUser,
-  RedirectToSignIn,
-} from '@clerk/clerk-react'
-const clerkPubKey = import.meta.env.VITE_REACT_APP_CLERK_PUBLISHABLE_KEY
-
-if (!clerkPubKey) {
-  throw 'Missing Publishable Key'
-}
 
 function ProtectedRoute() {
   const user = useAppSelector(selectUser)
