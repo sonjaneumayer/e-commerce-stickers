@@ -4,11 +4,11 @@ import mongoose from 'mongoose'
 dotenv.config()
 
 export const connectToDatabase = async () => {
+  const dbUsername = process.env.DB_USERNAME
+  const dbPassword = process.env.DB_PASSWORD
   try {
-    const dbUsername = process.env.DB_USERNAME
-    const dbPassword = process.env.DB_PASSWORD
     await mongoose.connect(
-      `mongodb+srv://${dbUsername}:${dbPassword}@ecommerce.1rapvds.mongodb.net/?retryWrites=true&w=majority`,
+      `mongodb+srv://${dbUsername}:${dbPassword}@clusterecommerce.cxhrm.mongodb.net/?retryWrites=true&w=majority&appName=ClusterECommerce`,
       {
         useNewUrlParser: true,
         useUnifiedTopology: true,
