@@ -7,8 +7,7 @@ services:
       dockerfile: Dockerfile
     restart: unless-stopped
     env_file: ./server/.env
-    networks:
-      - stickers
+    network_mode: 'host'
     ports:
       - '3001:3001'
     volumes:
