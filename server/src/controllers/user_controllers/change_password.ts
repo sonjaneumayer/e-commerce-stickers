@@ -2,7 +2,7 @@ import { Request, Response } from 'express'
 
 import { User } from '../../models/model'
 
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcryptjs'
 
 /////// CHANGE USER PASSWORD
 export const changeUserPassword = async (req: Request, res: Response) => {

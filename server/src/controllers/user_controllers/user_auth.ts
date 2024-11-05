@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken'
 import { Request, Response } from 'express'
 import { User } from '../../models/model'
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcryptjs'
 import { envConfig } from '../../config/env_config'
 import dotenv from 'dotenv'
 
@@ -70,7 +70,7 @@ export const userAuth = async (req: Request, res: Response) => {
     })
 
     //we sending back accessToken and user
-    res.json({ accessToken , user })
+    res.json({ accessToken, user })
   } catch (error) {
     console.error('Error during authentication:', error)
     return res

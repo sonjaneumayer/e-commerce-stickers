@@ -1,8 +1,7 @@
 import { User } from './../../models/model'
 import { Request, Response } from 'express'
 
-import bcrypt from 'bcrypt'
-
+import bcrypt from 'bcryptjs'
 //////// CREATE NEW USER
 export const createNewUser = async (req: Request, res: Response) => {
   const newUser = req.body
