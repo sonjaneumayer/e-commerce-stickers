@@ -22,20 +22,10 @@ git clone https://github.com/sunnyeyles/STICKERS
 cd stickers-ecommerce
 ```
 
-### 2. Start Backend
+### 2. Start Devlopment Environment
 
 ```bash
-cd server
-npm install
-npm start
-```
-
-### 3. Start Frontend
-
-```bash
-cd client
-npm install
-npm run dev
+docker compose up
 ```
 
 ## Technologies
@@ -60,11 +50,12 @@ npm run dev
 To test and manage your Stripe integration from command line, install the Stripe CLI: 'https://stripe.com/docs/stripe-cli' and create an account
 
 Than login and authenticate your Stripe user Account
+
 - first you need to cd into the folder where you have stored stripe.exe
 - `stripe login` to connect with stripe in cmd
 
 And test your webhook endpoint function
 To forward events to your local endpoint, run the following command with the the CLI to set up a local listener
 
-- `stripe listen --forward-to localhost:3000/payment/stripe/webhook` to call the local test endpoint 
+- `stripe listen --forward-to localhost:3000/payment/stripe/webhook` to call the local test endpoint
 - `4242 4242 4242 4242` dummy credit card number
